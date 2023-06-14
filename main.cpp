@@ -86,3 +86,27 @@ void recursiveDFS(const vector<Node>& graph, int startNode) {
     cout << endl;
 }
 
+
+////// non-recursive
+void nonRecursiveDFS(const vector<Node>& graph, int startNode) {
+    vector<bool> visited(graph.size(), false);
+    stack<int> nodeStack;
+    nodeStack.push(startNode);
+
+    while (!nodeStack.empty()) {
+        int node = nodeStack.top();
+        nodeStack.pop();
+
+        if (!visited[node]) {
+            visited[node] = true;
+            cout << node << " ";
+
+            for (int neighbor : graph[node].neighbors) {
+                if (!visited[neighbor]) {
+                    nodeStack.push(neighbor);
+                }
+            }
+        }
+    }
+    cout << endl;
+}
