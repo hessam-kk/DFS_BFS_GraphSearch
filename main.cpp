@@ -49,3 +49,17 @@ vector<Node> readGraphFromFile(const string& filename) {
     file.close();
     return graph;
 }
+
+// show the graph
+void printGraph(const vector<Node>& graph) 
+{
+    for (const Node& node : graph) 
+    {
+        cout << "Node " << node.id << ": ";
+        for (int neighbor : node.neighbors) 
+        {
+            cout << neighbor << " ";
+        }
+        cout << endl;
+    }
+}
