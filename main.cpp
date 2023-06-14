@@ -200,3 +200,43 @@ vector<int> topologicalOrder(const vector<Node>& graph) {
 
     return topological;
 }
+
+
+// Main
+int main() {
+    const string filename = "graph.txt";  
+
+    vector<Node> graph = readGraphFromFile(filename);
+
+
+    cout << "The Graph: " << endl;
+    printGraph(graph);
+    cout << "-------------------" << endl;
+
+    int start_node = 2;
+    cout << "DFS: " << endl;
+    cout << "recursive: ";
+    recursiveDFS(graph, start_node);
+    cout << "non-recursive: ";
+    nonRecursiveDFS(graph, start_node);
+    cout << endl;
+    cout << "BFS: " << endl;
+    cout << "recursive: ";
+    recursiveBFS(graph, start_node);
+    cout << "non-recursive: ";
+    nonRecursiveBFS(graph, start_node);
+    cout << endl;
+    cout << endl;
+
+
+    
+    vector<int> topological = topologicalOrder(graph);
+
+    cout << "Topological Order: ";
+    for (int node : topological) {
+        cout << node << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
