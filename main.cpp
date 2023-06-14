@@ -63,3 +63,26 @@ void printGraph(const vector<Node>& graph)
         cout << endl;
     }
 }
+
+
+///////////////////////////////
+////////// DFS ////////////////
+
+/// recursive
+void recursiveDFS(const vector<Node>& graph, int node, vector<bool>& visited) {
+    visited[node] = true;
+    cout << node << " ";
+
+    for (int neighbor : graph[node].neighbors) {
+        if (!visited[neighbor]) {
+            recursiveDFS(graph, neighbor, visited);
+        }
+    }
+}
+
+void recursiveDFS(const vector<Node>& graph, int startNode) {
+    vector<bool> visited(graph.size(), false);
+    recursiveDFS(graph, startNode, visited);
+    cout << endl;
+}
+
