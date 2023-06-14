@@ -143,3 +143,25 @@ void recursiveBFS(const vector<Node>& graph, int startNode) {
     cout << endl;
 }
 
+
+////// non recursive
+void nonRecursiveBFS(const vector<Node>& graph, int startNode) {
+    vector<bool> visited(graph.size(), false);
+    queue<int> nodeQueue;
+    nodeQueue.push(startNode);
+    visited[startNode] = true;
+
+    while (!nodeQueue.empty()) {
+        int node = nodeQueue.front();
+        nodeQueue.pop();
+        cout << node << " ";
+
+        for (int neighbor : graph[node].neighbors) {
+            if (!visited[neighbor]) {
+                visited[neighbor] = true;
+                nodeQueue.push(neighbor);
+            }
+        }
+    }
+    cout << endl;
+}
