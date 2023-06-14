@@ -165,3 +165,38 @@ void nonRecursiveBFS(const vector<Node>& graph, int startNode) {
     }
     cout << endl;
 }
+
+
+/////////////////////////////////
+//////// Topological order
+void topologicalDFS(const vector<Node>& graph, int node, vector<bool>& visited, stack<int>& order) {
+    visited[node] = true;
+
+    for (int neighbor : graph[node].neighbors) {
+        if (!visited[neighbor]) {
+            topologicalDFS(graph, neighbor, visited, order);
+        }
+    }
+
+    order.push(node);
+}
+
+vector<int> topologicalOrder(const vector<Node>& graph) {
+    vector<bool> visited(graph.size(), false);
+    stack<int> order;
+
+    for (const Node& node : graph) {
+        if (!visited[node.id]) {
+            topologicalDFS(graph, node.id, visited, order);
+        }
+    }
+
+    vector<int> topological;
+
+    while (!order.empty()) {
+        topological.push_back(order.top());
+        order.pop();
+    }
+
+    return topological;
+}
